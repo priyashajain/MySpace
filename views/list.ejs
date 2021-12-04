@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+  <meta charset="utf-8">
+  <title>To Do List</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <link rel="stylesheet" href="css/styleslist.css">
+
+  <nav class="navbar navbar-default">
+    <div class="container">
+      <div class="navbar-header">
+        <p class="navbar-brand">MYSPACE</p>
+      </div>
+        <ul class="nav navbar-nav navbar-right">
+          <!-- 6 -->
+          <li id="home"><a href="/">DIARY</a></li>
+          <li id="compose"><a href="/compose">COMPOSE</a></li>
+          <!-- <li id="list"><a href="/about">LIST</a></li> -->
+          <li id="list"><a href="/list">LIST</a></li>
+          <!-- <li id="game"><a href="/contact">GAME</a></li> -->
+          <li id="game"><a href="/game">GAME</a></li>
+        </ul>
+    </div>
+</head>
+
+<body>
+
+  <div class="box" id="heading">
+    <h1><%= kindOfDay %></h1>
+  </div>
+
+  <div class="box">
+
+      <%  for(var i=0; i<newListItems.length; i++){  %>
+        <div class="item">
+          <input type="checkbox">
+          <p><%=newListItems[i]%></p>
+        </div>
+
+      <%   }    %>
+
+      <form class="item" action="/list" method="post">
+        <input type="text" name="newListItem" placeholder="New Item">
+        <button type="submit">+</button>
+      </form>
+
+  </div>
+
+</body>
+
+</html>
