@@ -5,6 +5,8 @@ const bodyParser = require("body-parser");
 const ejs = require("ejs");
 const _ = require("lodash");
 
+const https=require('https');
+
 const homeStartingContent = "In this fast-paced world, a person has lot of work bundled upon him, and the person is not able to manage his work and take out time for himself at the same time. Things are always scattered in many places. MySpace provides you a place just for yourself, it is an all-in-one website which can tackle your problems in a user-friendly manner. The list feature will take care of your work planning, the game feature will provide you entertainment, and the daily diary feature will provide you with a place to destress, and capture the memorable and important moments of your life.";
 
 const app = express();
@@ -87,6 +89,25 @@ app.post("/list",function(req,res){
 
 app.get("/game",function(req,res){
   res.render("game");
+});
+
+app.get("/joke",function(req,res){
+
+  const url="https://v2.jokeapi.dev/joke/Any?safe-mode&lang=en&type=single";
+  https.get(url,function(response){
+    console.log(response.statusCode);
+    response.on("data",function(data){
+
+      const jokeData=JSON.parse(data);
+
+
+
+      const joke = jokeData.joke;
+      res.render("joke",{joke:joke});
+      
+
+    });
+  });
 });
 
 
